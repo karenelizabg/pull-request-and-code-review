@@ -1,9 +1,10 @@
 import random
 
 def main():
+    print("===============================")
     print("¡Bienvenido al juego de adivinar el número!")
     print("===============================")
-    print("Estoy pensando en un número entre 1 y 20.")
+    print("\nEstoy pensando en un número entre 1 y 20.")
     print("¿Puedes adivinar cuál es?")
 
     iniciar_juego()
@@ -14,19 +15,19 @@ def generar_numero():
 
 def comprobar_adivinanza(intento, numero):
     if intento < numero:
-        return "Muy bajo"
+        return f"¡BAJO! El número es más alto que {intento}\n"
     elif intento > numero:
-        return "Muy alto"
+        return f"¡ALTO! El número es más bajo que {intento}"
     elif intento == numero:
-        return "¡Correcto!"
-    
+        return f"¡CORRECTO! El número es {numero}\n"
+
 def iniciar_juego():
     numero = generar_numero()
     intento = 0
     attempts = 0
 
     while intento != numero:
-            intento = int(input("Introduce número: "))
+            intento = int(input("\nIntroduce número:\n    > "))
             attempts += 1
             print(comprobar_adivinanza(intento, numero))
     
