@@ -6,29 +6,29 @@ def main():
     print("Estoy pensando en un número entre 1 y 20.")
     print("¿Puedes adivinar cuál es?")
 
-    startGame()
+    iniciar_juego()
 
 
-def generateNumber():
+def generar_numero():
     return random.randint(1, 20)
 
-def checkGuess(guess, number):
-    if guess < number:
+def comprobar_adivinanza(intento, numero):
+    if intento < numero:
         return "Muy bajo"
-    elif guess > number:
+    elif intento > numero:
         return "Muy alto"
-    elif guess == number:
+    elif intento == numero:
         return "¡Correcto!"
     
-def startGame():
-    number = generateNumber()
-    guess = 0
+def iniciar_juego():
+    numero = generar_numero()
+    intento = 0
     attempts = 0
 
-    while guess != number:
-            guess = int(input("Introduce numero: "))
+    while intento != numero:
+            intento = int(input("Introduce número: "))
             attempts += 1
-            print(checkGuess(guess, number))
+            print(comprobar_adivinanza(intento, numero))
     
     print("Número de intentos:", attempts)
 
