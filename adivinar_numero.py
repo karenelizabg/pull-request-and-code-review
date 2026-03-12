@@ -7,15 +7,18 @@ RANGO_FINAL_FACIL = 25
 RANGO_FINAL_MEDIO = 150
 RANGO_FINAL_DIFICIL = 300
 
+
 def main():
-    print("===============================")
+    """Mensaje de bienvenida y arranque del juego."""
+    print("============================================")
     print("¡Bienvenido al juego de adivinar el número!")
-    print("===============================")
-    print("\nEstoy pensando en un número entre 1 y 20.")
-    print("¿Puedes adivinar cuál es?")
+    print("============================================")
 
     iniciar_juego()
+
+
 def seleccionar_dificultad():
+    """Selecciona la dificultad del juego."""
     while True:
         print("\nSelecciona la dificultad:")
         print("1. Fácil (1-25)")
@@ -35,7 +38,9 @@ def seleccionar_dificultad():
         else:
             print("Por favor, selecciona una opción válida.")
 
+
 def seleccionar_rango():
+    """Permite al usuario seleccionar un rango personalizado para el número a adivinar."""
     while True:
         try:
             print("\nSelecciona el rango del número (1-100):")
@@ -48,10 +53,14 @@ def seleccionar_rango():
         except ValueError:
             print("Por favor, introduce un número válido.")
 
+
 def generar_numero(rango_inicial, rango_final):
+    """Genera un número aleatorio dentro del rango especificado."""
     return random.randint(rango_inicial, rango_final)
 
+
 def comprobar_intento(intento, numero):
+    """Compara el intento del usuario con el número a adivinar y devuelve una pista."""
     if intento < numero:
         return f"¡BAJO! El número es más alto que {intento}\n"
     elif intento > numero:
@@ -59,11 +68,16 @@ def comprobar_intento(intento, numero):
     elif intento == numero:
         return f"¡CORRECTO! El número es {numero}\n"
 
+
 def iniciar_juego():
+    """Inicia el juego de adivinar el número."""
     rango_inicial, rango_final = seleccionar_dificultad()
     numero = generar_numero(rango_inicial, rango_final)
     adivinanza = 0
     intentos = 0
+    
+    print(f"\nEstoy pensando en un número entre {rango_inicial} y {rango_final}")
+    print("¿Puedes adivinar cuál es?")
 
     while adivinanza != numero:
         try:
@@ -75,4 +89,6 @@ def iniciar_juego():
     
     print("Número de intentos:", intentos)
 
-main()
+
+if __name__ == "__main__":
+    main()
