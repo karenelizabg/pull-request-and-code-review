@@ -77,17 +77,24 @@ def iniciar_juego():
     intentos = 0
     
     print(f"\nEstoy pensando en un número entre {rango_inicial} y {rango_final}")
-    print("¿Puedes adivinar cuál es?")
+    print("¿Puedes adivinar cuál es?\n")
 
     while adivinanza != numero:
         try:
-            adivinanza = int(input("\nIntroduce número:\n    > "))
             intentos += 1
+            conteo_intentos(intentos)
+            adivinanza = int(input("Introduce número:\n    > "))
             print(comprobar_intento(adivinanza, numero))
+            print("-------------------------------\n")
+            
         except ValueError:
             print("Por favor, introduce un número válido.")
     
-    print("Número de intentos:", intentos)
+    print("¡Felicidades! Adivinaste el número en", intentos, "intentos.")
+
+def conteo_intentos(intentos):
+    """Muestra el número de intentos realizados por el usuario."""
+    print(f"INTENTO {intentos}.")
 
 
 if __name__ == "__main__":
