@@ -9,6 +9,18 @@ def main():
 
     iniciar_juego()
 
+def seleccionar_rango():
+    while True:
+        try:
+            print("\nSelecciona el rango del número (1-100):")
+            rango_inicial = int(input("\nInicio del rango:\n    > "))
+            rango_final = int(input("Final del rango:\n    > "))
+            if 1 <= rango_inicial <= 100 and 1 <= rango_final <= 100 and rango_inicial <= rango_final:
+                return rango_inicial, rango_final
+            else:
+                print("Por favor, selecciona un número entre 1 y 100.")
+        except ValueError:
+            print("Por favor, introduce un número válido.")
 
 def generar_numero():
     return random.randint(1, 20)
