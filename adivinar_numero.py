@@ -1,4 +1,11 @@
+# Juego de adivinar el número
 import random
+
+
+RANGO_INICIAL = 1
+RANGO_FINAL_FACIL = 25
+RANGO_FINAL_MEDIO = 150
+RANGO_FINAL_DIFICIL = 300
 
 def main():
     print("===============================")
@@ -8,6 +15,25 @@ def main():
     print("¿Puedes adivinar cuál es?")
 
     iniciar_juego()
+def seleccionar_dificultad():
+    while True:
+        print("\nSelecciona la dificultad:")
+        print("1. Fácil (1-25)")
+        print("2. Medio (1-150)")
+        print("3. Difícil (1-300)")
+        print("4. Personalizado")
+        opcion = input("\nOpción:\n    > ")
+
+        if opcion == '1':
+            return RANGO_INICIAL, RANGO_FINAL_FACIL
+        elif opcion == '2':
+            return RANGO_INICIAL, RANGO_FINAL_MEDIO
+        elif opcion == '3':
+            return RANGO_INICIAL, RANGO_FINAL_DIFICIL
+        elif opcion == '4':
+            return seleccionar_rango()
+        else:
+            print("Por favor, selecciona una opción válida.")
 
 def seleccionar_rango():
     while True:
@@ -22,10 +48,10 @@ def seleccionar_rango():
         except ValueError:
             print("Por favor, introduce un número válido.")
 
-def generar_numero():
-    return random.randint(1, 20)
+def generar_numero(rango_inicial, rango_final):
+    return random.randint(rango_inicial, rango_final)
 
-def comprobar_adivinanza(intento, numero):
+def comprobar_intento(intento, numero):
     if intento < numero:
         return f"¡BAJO! El número es más alto que {intento}\n"
     elif intento > numero:
@@ -34,18 +60,19 @@ def comprobar_adivinanza(intento, numero):
         return f"¡CORRECTO! El número es {numero}\n"
 
 def iniciar_juego():
-    numero = generar_numero()
-    intento = 0
-    attempts = 0
+    rango_inicial, rango_final = seleccionar_dificultad()
+    numero = generar_numero(rango_inicial, rango_final)
+    adivinanza = 0
+    intentos = 0
 
-    while intento != numero:
+    while adivinanza != numero:
         try:
-            intento = int(input("\nIntroduce número:\n    > "))
-            attempts += 1
-            print(comprobar_adivinanza(intento, numero))
+            adivinanza = int(input("\nIntroduce número:\n    > "))
+            intentos += 1
+            print(comprobar_intento(adivinanza, numero))
         except ValueError:
             print("Por favor, introduce un número válido.")
     
-    print("Número de intentos:", attempts)
+    print("Número de intentos:", intentos)
 
 main()
