@@ -43,10 +43,10 @@ def seleccionar_rango():
     """Permite al usuario seleccionar un rango personalizado para el número a adivinar."""
     while True:
         try:
-            print("\nSelecciona el rango del número (1-100):")
+            print("\nSelecciona el rango del número: (solo positivos)")
             rango_inicial = int(input("\nInicio del rango:\n    > "))
             rango_final = int(input("Final del rango:\n    > "))
-            if 1 <= rango_inicial <= 100 and 1 <= rango_final <= 100 and rango_inicial <= rango_final:
+            if RANGO_INICIAL <= rango_inicial and rango_inicial <= rango_final:
                 return rango_inicial, rango_final
             else:
                 print("Por favor, selecciona un número entre 1 y 100.")
@@ -91,6 +91,7 @@ def iniciar_juego():
             print("Por favor, introduce un número válido.")
     
     print("¡Felicidades! Adivinaste el número en", intentos, "intentos.")
+
 
 def conteo_intentos(intentos):
     """Muestra el número de intentos realizados por el usuario."""
