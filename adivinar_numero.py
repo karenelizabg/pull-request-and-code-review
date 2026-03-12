@@ -1,20 +1,35 @@
 import random
+
+def main():
+    print("¡Bienvenido al juego de adivinar el número!")
+    print("===============================")
+    print("Estoy pensando en un número entre 1 y 20.")
+    print("¿Puedes adivinar cuál es?")
+
+    startGame()
+
+
+def generateNumber():
+    return random.randint(1, 20)
+
+def checkGuess(guess, number):
+    if guess < number:
+        return "Muy bajo"
+    elif guess > number:
+        return "Muy alto"
+    elif guess == number:
+        return "¡Correcto!"
+    
 def startGame():
-    number = random.randint(1, 20)
+    number = generateNumber()
     guess = 0
     attempts = 0
-    print("Adivina el número entre 1 y 20")
+
     while guess != number:
-        guess = int(input("Ingresa tu intento: "))
-        attempts += 1
-        if guess < number:
-            print("Muy bajo")
-        elif guess > number:
-            print("Muy alto")
-        elif guess == number:
-            print("¡Correcto!")
-        else:
-            print("Error")
-    print("Número de intentos:", attempts)
+            guess = int(input("Introduce numero: "))
+            attempts += 1
+            print(checkGuess(guess, number))
     
-startGame()
+    print("Número de intentos:", attempts)
+
+main()
