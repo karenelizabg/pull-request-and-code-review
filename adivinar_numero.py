@@ -27,9 +27,12 @@ def iniciar_juego():
     attempts = 0
 
     while intento != numero:
+        try:
             intento = int(input("\nIntroduce número:\n    > "))
             attempts += 1
             print(comprobar_adivinanza(intento, numero))
+        except ValueError:
+            print("Por favor, introduce un número válido.")
     
     print("Número de intentos:", attempts)
 
