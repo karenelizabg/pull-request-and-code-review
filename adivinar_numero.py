@@ -8,8 +8,17 @@ RANGO_FINAL_MEDIO = 150
 RANGO_FINAL_DIFICIL = 300
 
 
-def main():
-    """Mensaje de bienvenida y arranque del juego."""
+def main() -> None:
+    """
+    Mensaje de bienvenida y arranque del juego.
+
+    Parámetros:
+        None
+
+    Retorna:
+        None
+    """
+    
     print("============================================")
     print("¡Bienvenido al juego de adivinar el número!")
     print("============================================")
@@ -17,8 +26,17 @@ def main():
     iniciar_juego()
 
 
-def seleccionar_dificultad():
-    """Selecciona la dificultad del juego."""
+def seleccionar_dificultad() -> tuple[int, int]:
+    """
+    Selecciona la dificultad del juego.
+
+    Parámetros:
+        None
+
+    Retorna:
+        tuple[int, int]: rango inicial y rango final según la dificultad elegida.
+    """
+
     while True:
         print("\nSelecciona la dificultad:")
         print("1. Fácil (1-25)")
@@ -39,28 +57,58 @@ def seleccionar_dificultad():
             print("Por favor, selecciona una opción válida.")
 
 
-def seleccionar_rango():
-    """Permite al usuario seleccionar un rango personalizado para el número a adivinar."""
+def seleccionar_rango() -> tuple[int, int]:
+    """
+    Permite al usuario seleccionar un rango personalizado para el número a adivinar.
+
+    Parámetros:
+        None
+
+    Retorna:
+        tuple[int, int]: rango inicial y rango final según la selección del usuario.
+    """
+
     while True:
         try:
-            print("\nSelecciona el rango del número: (solo positivos)")
+            print("\nSelecciona el rango del número:")
+            print("El inicio debe ser mayor a 0 y menor que el rango final.")
             rango_inicial = int(input("\nInicio del rango:\n    > "))
             rango_final = int(input("Final del rango:\n    > "))
-            if RANGO_INICIAL <= rango_inicial and rango_inicial <= rango_final:
+            if RANGO_INICIAL <= rango_inicial and rango_inicial < rango_final:
                 return rango_inicial, rango_final
             else:
-                print("Por favor, selecciona un número entre 1 y 100.")
+                print("Por favor, selecciona un número válido.")
         except ValueError:
             print("Por favor, introduce un número válido.")
 
 
-def generar_numero(rango_inicial, rango_final):
-    """Genera un número aleatorio dentro del rango especificado."""
+def generar_numero(rango_inicial: int, rango_final: int) -> int:
+    """
+    Genera un número aleatorio dentro del rango especificado.
+
+    Parámetros:
+        rango_inicial (int): límite inferior del rango.
+        rango_final (int): límite superior del rango.
+
+    Retorna:
+        int: número aleatorio generado dentro del rango.
+    """
+
     return random.randint(rango_inicial, rango_final)
 
 
-def comprobar_intento(intento, numero):
-    """Compara el intento del usuario con el número a adivinar y devuelve una pista."""
+def comprobar_intento(intento: int, numero: int) -> str:
+    """
+    Compara el intento del usuario con el número a adivinar y devuelve una pista.
+
+    Parámetros:
+        intento (int): número ingresado por el usuario.
+        numero (int): número que se debe adivinar.
+
+    Retorna:
+        str: mensaje indicando si el intento es bajo, alto o correcto.
+    """
+
     if intento < numero:
         return f"¡BAJO! El número es más alto que {intento}\n"
     elif intento > numero:
@@ -69,8 +117,17 @@ def comprobar_intento(intento, numero):
         return f"¡CORRECTO! El número es {numero}\n"
 
 
-def iniciar_juego():
-    """Inicia el juego de adivinar el número."""
+def iniciar_juego() -> None:
+    """
+    Inicia el juego de adivinar el número.
+
+    Parámetros:
+        None
+
+    Retorna:
+        None
+    """
+
     rango_inicial, rango_final = seleccionar_dificultad()
     numero = generar_numero(rango_inicial, rango_final)
     adivinanza = 0
@@ -93,8 +150,17 @@ def iniciar_juego():
     print("¡Felicidades! Adivinaste el número en", intentos, "intentos.")
 
 
-def conteo_intentos(intentos):
-    """Muestra el número de intentos realizados por el usuario."""
+def conteo_intentos(intentos: int) -> None:
+    """"
+    Muestra el número de intentos realizados por el usuario.
+
+    Parámetros:
+        intentos (int): número de intentos realizados.
+
+    Retorna:
+        None
+    """
+
     print(f"INTENTO {intentos}.")
 
 
